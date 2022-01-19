@@ -16,26 +16,28 @@ public class CabInvoiceGeneratorTest {
 	
 	@Test
 	public void whenDistanceAndTimeGiven_ShouldReturnTotalFare() {
+		String type ="Normal";
 		CabInvoiceGeneratorMain generator = new CabInvoiceGeneratorMain();
 		double distance=1;
 		int time = 6;
-		double fare = generator.totalFare(distance,time);
+		double fare = generator.totalFare(distance,time,type);
 		assertEquals(16,fare,0.0);
 	}
 	@Test
 	public void whenDistanceAndTimeGiven_WhenTotalFareLessThan5_ShouldReturnMinFare() {
+		String type ="Normal";
 		CabInvoiceGeneratorMain generator = new CabInvoiceGeneratorMain();
 		double distance=0.1;
 		int time = 2;
-		double fare = generator.totalFare(distance,time);
+		double fare = generator.totalFare(distance,time,type);
 		assertEquals(5,fare,0.0);
 	}
 	@Test
 	public void givenMultipleRides_ShouldReturnInvoice() {
-
+		String type ="Premium";
 		CabRide[] rides = {new CabRide(2.0, 5), 
-						new CabRide(0.1, 1)};
-		double totalFare = generator.calculateFare(rides);
+						new CabRide(1.0, 1)};
+		double totalFare = generator.calculateFare(rides,type);
 		assertEquals(30, totalFare, 0.0);
 	}
 	@Test
