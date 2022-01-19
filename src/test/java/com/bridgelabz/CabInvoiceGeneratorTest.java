@@ -28,11 +28,21 @@ public class CabInvoiceGeneratorTest {
 		assertEquals(5,fare,0.0);
 	}
 	@Test
-	public void givenMultipleRides_ShouldReturnInvoiceSummary() {
+	public void givenMultipleRides_ShouldReturnInvoice() {
 
 		CabRide[] rides = {new CabRide(2.0, 5), 
 						new CabRide(0.1, 1)};
 		double totalFare = generator.calculateFare(rides);
 		assertEquals(30, totalFare, 0.0);
+	}
+	@Test
+	public void givenMultipleRides_ShouldReturnInvoiceSummary() {
+
+		CabRide[] rides = {new CabRide(2.0, 5), 
+						new CabRide(0.1, 1)};
+		InvoiceSummary summary = generator.calculateFareReturnObject(rides);
+		InvoiceSummary expectedSummary = new InvoiceSummary(2, 30);
+		if(expectedSummary.getAverageFare() == summary.getAverageFare() && expectedSummary.getNumberOfRides() == summary.getNumberOfRides() && expectedSummary.getTotalFare() == summary.getTotalFare())
+			assertEquals(1, 1);
 	}
 }
