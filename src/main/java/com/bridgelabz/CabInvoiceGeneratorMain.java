@@ -1,5 +1,7 @@
 package com.bridgelabz;
- 
+
+import java.util.ArrayList;
+
 public class CabInvoiceGeneratorMain {
 	private static final double MIN_COST_PER_KM = 10;
 	private static final int MIN_COST_PER_MINUTE = 1;

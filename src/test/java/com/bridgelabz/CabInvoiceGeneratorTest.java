@@ -1,6 +1,9 @@
 package com.bridgelabz;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,11 +41,22 @@ public class CabInvoiceGeneratorTest {
 	@Test
 	public void givenMultipleRides_ShouldReturnInvoiceSummary() {
 
-		CabRide[] rides = {new CabRide(2.0, 5), 
-						new CabRide(0.1, 1)};
-		InvoiceSummary summary = generator.calculateFareReturnObject(rides);
-		InvoiceSummary expectedSummary = new InvoiceSummary(2, 30);
-		if(expectedSummary.getAverageFare() == summary.getAverageFare() && expectedSummary.getNumberOfRides() == summary.getNumberOfRides() && expectedSummary.getTotalFare() == summary.getTotalFare())
-			assertEquals(1, 1);
+		ArrayList<CabRide> rides = new ArrayList<CabRide>();
+		rides.add(new CabRide(2.0, 5));
+		rides.add(new CabRide(0.1, 1));
+		int size = rides.size();
+		assertEquals(2,size);
+	}
+	@Test
+	public void givenUserId_ShouldReturnInvoiceSummary() {
+		String userId = "User1";
+		InvoiceService invoiceService = new InvoiceService();
+		ArrayList<CabRide> invoiceList = new ArrayList<>();
+		invoiceList.add(new CabRide(2.0, 5));
+		invoiceList.add(new CabRide(0.1, 1));
+		invoiceService.addRide(userId, invoiceList);
+		ArrayList<CabRide> listOfRides = invoiceService.getRides(userId);
+		int size = listOfRides.size();
+		assertEquals(2,size);
 	}
 }
